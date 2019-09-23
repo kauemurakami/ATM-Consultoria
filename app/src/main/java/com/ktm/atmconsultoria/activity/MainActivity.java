@@ -1,5 +1,6 @@
 package com.ktm.atmconsultoria.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -39,8 +40,9 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                  //      .setAction("Action", null).show();
+                enviarEmail();
             }
         });
 
@@ -123,7 +125,7 @@ public class MainActivity extends AppCompatActivity
             transaction.commit();
 
         } else if (id == R.id.nav_contato) {
-
+            enviarEmail();
         } else if (id == R.id.nav_sobre) {
 
         }
@@ -131,5 +133,22 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void enviarEmail(){
+
+        Intent i = new Intent(Intent.ACTION_SEND);
+        i.putExtra(Intent.EXTRA_EMAIL, new String[]{
+                "atmconsultoria@gmail.com" , "atm@gmail.com"
+        });
+        i.putExtra(Intent.EXTRA_SUBJECT, "Contato pelo app");
+        i.putExtra(Intent.EXTRA_TEXT, "mensagem automática");
+
+        //configurando app proprios para email
+        i.setType("message/rfc822");
+        //        i.setType("application/pdf");
+        //        i.setType("image/png");
+
+        startActivity(i.createChooser(i, "escolha o app para envial o email"));
     }
 }
