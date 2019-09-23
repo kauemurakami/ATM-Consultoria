@@ -1,4 +1,4 @@
-package com.ktm.atmconsultoria;
+package com.ktm.atmconsultoria.activity;
 
 import android.os.Bundle;
 
@@ -13,11 +13,16 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
+import com.ktm.atmconsultoria.R;
+import com.ktm.atmconsultoria.fragments.ClientesFragment;
+import com.ktm.atmconsultoria.fragments.PrincipalFragment;
+import com.ktm.atmconsultoria.fragments.ServicosFragment;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.Menu;
 
@@ -38,6 +43,14 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+
+        //fragmenttela princiapl
+        PrincipalFragment principalFragment = new PrincipalFragment();
+        FragmentTransaction transaction = getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.frame, principalFragment);
+        transaction.commit();
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -87,9 +100,27 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_principal) {
             // Handle the camera action
+            PrincipalFragment principalFragment = new PrincipalFragment();
+            FragmentTransaction transaction = getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.frame, principalFragment);
+            transaction.commit();
+
         } else if (id == R.id.nav_clientes) {
 
+            ClientesFragment clienteFragment = new ClientesFragment();
+            FragmentTransaction transaction = getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.frame, clienteFragment);
+            transaction.commit();
+
         } else if (id == R.id.nav_servicos) {
+
+            ServicosFragment servicosFragment = new ServicosFragment();
+            FragmentTransaction transaction = getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.frame, servicosFragment);
+            transaction.commit();
 
         } else if (id == R.id.nav_contato) {
 
