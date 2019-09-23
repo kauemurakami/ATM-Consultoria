@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_contato) {
             enviarEmail();
         } else if (id == R.id.nav_sobre) {
-
+            startActivity(new Intent(this, SobreActivity.class));
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
